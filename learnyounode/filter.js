@@ -18,11 +18,19 @@ function callbackfn(error, pathArguments) {
 // }
 // is it because there is commas or somethig o e array item, or quotation marks...
 
-  function filterByExtn(file) {
-    var fileFull = file.toString();
-      var fileExtn = fileFull.substr(fileFull.indexOf(".") +1);
-  return fileExtn == process.argv[3];
-  
+function filterByExtn(file) {
+  var desiredExtension = process.argv[3];
+  var fileFull = file.toString();
+  //need to make it so that must have a dot
+  var fileExtn = fileFull.substr(fileFull.indexOf(".") +1);
+  // var withDot = fileFull.substr(fileFull.indexOf("."));
+
+  var correctExt = fileExtn == desiredExtension;
+  // var correctExtWithDot = withDot == ("." + correctExt);
+  // var notJustExtn = fileFull !== ("." + desiredExtension);
+
+  return correctExt;
+
 
   // function filterByExtn(file) {
   //   var fileFull = file.toString();
@@ -31,7 +39,7 @@ function callbackfn(error, pathArguments) {
   //     var notDot = fileFull.match(reg);
   // return fileFull == notDot; 
 
-  }
+}
 
 fs.readdir(process.argv[2], callbackfn);
 
